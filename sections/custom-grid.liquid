@@ -1,0 +1,37 @@
+{% schema %}
+{
+  "name": "Custom Grid",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Custom Grid"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="grid">
+  {% for block in section.blocks %}
+    {% assign product = all_products[block.settings.product] %}
+    
+    <div class="card">
+      <img src="{{ product.featured_image | image_url }}" width="200"/>
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.price | money }}</p>
+      <button class="open-popup">View</button>
+    </div>
+  {% endfor %}
+</div>
